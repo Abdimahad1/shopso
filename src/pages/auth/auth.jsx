@@ -25,7 +25,8 @@ export default function Auth() {
   /* -------------------------------
      BACKEND URL (global)
   -------------------------------- */
-  const BASE_URL = "http://localhost:5000/api/auth";
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const BASE_URL = `${API_URL}/auth`;
   const LOGIN_URL = `${BASE_URL}/login`;
   const VERIFY_SESSION_URL = `${BASE_URL}/verify-session`;
 
