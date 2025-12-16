@@ -68,7 +68,7 @@ export default function AddProduct() {
   const [fetchingProduct, setFetchingProduct] = useState(false);
 
   // API base URL
-  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   // Fetch product data if in edit mode
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function AddProduct() {
       console.log("Fetching product with ID:", id);
       console.log("Using token:", token ? "Token exists" : "No token");
       
-      const response = await axios.get(`${API_BASE_URL}/products/${id}`, {
+      const response = await axios.get(`${API_URL}/products/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -151,7 +151,7 @@ export default function AddProduct() {
       setLoadingCategories(true);
       const token = localStorage.getItem("token");
       
-      const response = await axios.get(`${API_BASE_URL}/categories`, {
+      const response = await axios.get(`${API_URL}/categories`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -190,7 +190,7 @@ export default function AddProduct() {
       const token = localStorage.getItem("token");
       
       const response = await axios.post(
-        `${API_BASE_URL}/categories`,
+        `${API_URL}/categories`,
         { name: newCategoryName.trim() },
         {
           headers: {
@@ -304,7 +304,7 @@ export default function AddProduct() {
       
       if (isEditing) {
         console.log("Updating product with ID:", id);
-        response = await axios.put(`${API_BASE_URL}/products/${id}`, formData, {
+        response = await axios.put(`${API_URL}/products/${id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -312,7 +312,7 @@ export default function AddProduct() {
         });
       } else {
         console.log("Creating new product");
-        response = await axios.post(`${API_BASE_URL}/products`, formData, {
+        response = await axios.post(`${API_URL}/products`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",

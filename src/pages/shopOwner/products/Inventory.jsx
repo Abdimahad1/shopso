@@ -15,7 +15,7 @@ import {
 import axios from "axios";
 
 export default function Inventory() {
-  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -46,7 +46,7 @@ export default function Inventory() {
         sortOrder: "asc"
       };
 
-      const response = await axios.get(`${API_BASE_URL}/products`, {
+      const response = await axios.get(`${API_URL}/products`, {
         headers: { Authorization: `Bearer ${token}` },
         params
       });
@@ -67,7 +67,7 @@ export default function Inventory() {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`${API_BASE_URL}/categories`, {
+      const response = await axios.get(`${API_URL}/categories`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -108,7 +108,7 @@ export default function Inventory() {
       const token = localStorage.getItem("token");
       
       const response = await axios.patch(
-        `${API_BASE_URL}/products/${productId}/stock`,
+        `${API_URL}/products/${productId}/stock`,
         { action, quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );
