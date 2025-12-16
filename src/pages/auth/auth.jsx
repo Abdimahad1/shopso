@@ -189,7 +189,6 @@ export default function Auth() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Client-IP": "web",
         },
         body: JSON.stringify({
           email,
